@@ -1,10 +1,10 @@
-import Layout from "./layout";
+import RootLayout from "./_components/RootLayout";
 
 const Home = () => {
   return (
-    <Layout>
+    <RootLayout>
       <div>Hello</div>
-    </Layout>
+    </RootLayout>
   );
 };
 
