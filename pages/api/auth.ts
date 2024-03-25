@@ -1,11 +1,7 @@
 import bcrypt from "bcryptjs";
 import { NextApiRequest, NextApiResponse } from "next";
 import { MongoClient } from "mongodb";
-
-interface User {
-  username: string;
-  passwordHash: string;
-}
+import { User } from "@/types/User";
 
 const uri = "mongodb+srv://harshil:harshil@cluster0.xqra17r.mongodb.net/";
 const client = new MongoClient(uri);
