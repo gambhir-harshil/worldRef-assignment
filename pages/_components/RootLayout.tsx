@@ -17,7 +17,9 @@ const RootLayout = ({ children }: RootLayoutProps) => {
     >
       <Toaster position="bottom-right" />
       <Navbar />
-      {children}
+      <div className="h-[calc(100vh-5rem)] overflow-y-scroll p-8">
+        {children}
+      </div>
     </ThemeProvider>
   );
 };

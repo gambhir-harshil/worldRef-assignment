@@ -4,14 +4,18 @@ import { formSchema } from "@/lib/schema";
 import CustomForm from "../_components/CustomForm";
 import loginUser from "@/utils/loginUser";
 import { toast } from "sonner";
-import useAuthStore, { AuthState } from "@/store/AuthStore";
+import useAuthStore from "@/store/AuthStore";
+import { useRouter } from "next/router";
 
 const Login = () => {
+  const router = useRouter();
   const login = useAuthStore((state: any) => state.login);
   function onSubmit(values: z.infer<typeof formSchema>) {
     try {
       loginUser(values.username, values.password);
       login(values.username);
+      localStorage.setItem("user", values.username);
+      router.push("/");
     } catch (err) {
       toast("An error occured!");
     }
