@@ -1,19 +1,27 @@
 import { cn } from "@/lib/utils";
+import useAuthStore from "@/store/AuthStore";
 import { Character } from "@/types/Character";
 import { useRouter } from "next/router";
+import { toast } from "sonner";
 
 interface CardProps {
   character: Character;
 }
 const Card = ({ character }: CardProps) => {
   const router = useRouter();
+  const { isAuthenticated } = useAuthStore();
   const handleClick = () => {
-    router.push(`/characters/${character.id}`);
+    if (isAuthenticated) {
+      router.push(`/characters/${character.id}`);
+    } else {
+      router.push("/login");
+    }
   };
 
   if (!character) {
     return null;
   }
+
   return (
     <div
       onClick={handleClick}

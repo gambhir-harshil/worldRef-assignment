@@ -19,12 +19,10 @@ const Home = () => {
 
   return (
     <RootLayout>
-      {loading && (
-        <div className="flex items-center justify-center">Loading</div>
-      )}
       <>
-        <div className="grid-cols-4 grid gap-8">
+        <div className="lg:grid-cols-4 grid gap-8 md:grid-cols-3 sm:grid-cols-2 grid-cols-1">
           {characters &&
+            !loading &&
             characters.map((character) => (
               <Card key={character.id} character={character} />
             ))}
