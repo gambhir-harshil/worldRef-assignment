@@ -3,6 +3,7 @@ import useAxios from "@/hooks/useAxios";
 import { useEffect, useState } from "react";
 import { Character, CharacterResponse } from "@/types/Character";
 import Card from "./_components/Card";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const Home = () => {
   const { response, loading, error } =
@@ -18,6 +19,9 @@ const Home = () => {
 
   return (
     <RootLayout>
+      {loading && (
+        <div className="flex items-center justify-center">Loading</div>
+      )}
       <>
         <div className="grid-cols-4 grid gap-8">
           {characters &&
