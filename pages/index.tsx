@@ -8,8 +8,6 @@ interface HomeProps {
 }
 
 const Home = ({ characters }: HomeProps) => {
-  console.log(characters);
-
   return (
     <RootLayout>
       <>
