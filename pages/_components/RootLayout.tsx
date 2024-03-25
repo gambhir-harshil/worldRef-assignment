@@ -1,13 +1,13 @@
-import { ModeToggle } from "@/components/mode-toggle";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ReactNode } from "react";
-import Navbar from "./_components/navbar";
+import Navbar from "./navbar";
+import { Toaster } from "sonner";
 
-interface LayoutProps {
+interface RootLayoutProps {
   children: ReactNode;
 }
 
-const Layout = ({ children }: LayoutProps) => {
+const RootLayout = ({ children }: RootLayoutProps) => {
   return (
     <ThemeProvider
       attribute="class"
@@ -15,10 +15,11 @@ const Layout = ({ children }: LayoutProps) => {
       enableSystem
       disableTransitionOnChange
     >
+      <Toaster position="bottom-right" />
       <Navbar />
       {children}
     </ThemeProvider>
   );
 };
 
-export default Layout;
+export default RootLayout;
