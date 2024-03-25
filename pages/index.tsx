@@ -1,28 +1,18 @@
 import RootLayout from "./_components/RootLayout";
-import useAxios from "@/hooks/useAxios";
-import { useEffect, useState } from "react";
 import { Character, CharacterResponse } from "@/types/Character";
 import Card from "./_components/Card";
-import { Skeleton } from "@/components/ui/skeleton";
+import myCache from "@/lib/cache";
 
-const Home = () => {
-  const { response, loading, error } =
-    useAxios<CharacterResponse>("/character");
-  const [characters, setCharacters] = useState<Character[] | null>(null);
-  console.log(characters);
+interface HomeProps {
+  characters: Character[];
+}
 
-  useEffect(() => {
-    if (response) {
-      setCharacters(response.results);
-    }
-  }, [response]);
-
+const Home = ({ characters }: HomeProps) => {
   return (
     <RootLayout>
       <>
         <div className="lg:grid-cols-4 grid gap-8 md:grid-cols-3 sm:grid-cols-2 grid-cols-1">
           {characters &&
-            !loading &&
             characters.map((character) => (
               <Card key={character.id} character={character} />
             ))}
@@ -31,5 +21,22 @@ const Home = () => {
     </RootLayout>
   );
 };
+
+export async function getServerSideProps() {
+  let data = myCache.get("characters");
+
+  if (!data) {
+    const response = await fetch(`https://rickandmortyapi.com/api/character`);
+    const fetchedData: CharacterResponse = await response.json();
+    myCache.set("characters", fetchedData.results);
+    data = fetchedData.results;
+  }
+
+  return {
+    props: {
+      characters: data || [],
+    },
+  };
+}
 
 export default Home;
