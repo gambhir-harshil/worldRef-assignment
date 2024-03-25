@@ -10,6 +10,10 @@ const Card = ({ character }: CardProps) => {
   const handleClick = () => {
     router.push(`/characters/${character.id}`);
   };
+
+  if (!character) {
+    return null;
+  }
   return (
     <div
       onClick={handleClick}
