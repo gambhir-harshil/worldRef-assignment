@@ -19,7 +19,7 @@ const Navbar = () => {
 
   return (
     <nav className="sticky top-0 h-20 flex justify-between items-center px-8 py-4 border-b">
-      <span>WordRef</span>
+      <span className="text-2xl font-semibold">WorldRef</span>
       <div className="flex gap-4 items-center">
         {!isAuthenticated ? (
           <span
