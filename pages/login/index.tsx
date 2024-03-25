@@ -2,7 +2,6 @@ import { z } from "zod";
 import AuthLayout from "../_components/AuthLayout";
 import { formSchema } from "@/lib/schema";
 import CustomForm from "../_components/CustomForm";
-import registerUser from "@/utils/registerUser";
 import loginUser from "@/utils/loginUser";
 import { toast } from "sonner";
 import useAuthStore, { AuthState } from "@/store/AuthStore";

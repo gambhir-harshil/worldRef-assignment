@@ -1,9 +1,11 @@
+"use client";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import useAuthStore from "@/store/AuthStore";
+import { toast } from "sonner";
 
 const useAuth = () => {
-  const isAuthenticated = useAuthStore((state: any) => state.isAuthenticated);
+  const { isAuthenticated } = useAuthStore();
   const router = useRouter();
 
   useEffect(() => {
