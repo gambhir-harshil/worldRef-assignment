@@ -10,12 +10,13 @@ import { useRouter } from "next/router";
 const Register = () => {
   const router = useRouter();
   const login = useAuthStore((state: any) => state.login);
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      registerUser(values.username, values.password);
-      login(values.username);
-      localStorage.setItem("user", values.username);
-      router.push("/");
+      const authToken = await registerUser(values.username, values.password);
+      if (authToken) {
+        login(values.username);
+        router.push("/");
+      }
     } catch (err) {
       toast("An error occured!");
     }
