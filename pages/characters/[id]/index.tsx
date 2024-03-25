@@ -20,7 +20,7 @@ const SinglePage = ({ character, error }: SinglePageProps) => {
   useAuth();
   return (
     <RootLayout>
-      <div className="flex gap-16">
+      <div className="flex gap-16 flex-col md:flex-row">
         <div className="flex flex-col gap-4">
           <div className="rounded-md overflow-hidden shadow-lg">
             <img src={character.image} alt={character.name} />
