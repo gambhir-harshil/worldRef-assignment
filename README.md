@@ -1,40 +1,70 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# WorldRef Assignment
 
-First, run the development server:
+I have created a simple NextJs application to showcase my skills of NextJs.
+The application uses the **Rick and Morty Api** to get the characters of the show and some details of them on their specific route.
+
+
+## Run Locally
+
+Clone the project
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+  git clone https://github.com/gambhir-harshil/worldRef-assignment.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Go to the project directory
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```bash
+  cd worldRef-assignment
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+Install dependencies
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```bash
+  yarn install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Start the server
 
-## Learn More
+```bash
+  yarn dev
+```
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Tech Stack
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+**Client:** NextJs, Zustand, TailwindCSS, ShadCn
 
-## Deploy on Vercel
+**Database:** MongoDb
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Project Structure
+
+- `pages/`: Contains Next.js pages and the API routes. Utilizes dynamic routing for characters.
+- `components/`: Reusable UI components including form, button, input.
+- `hooks/`: Custom React hooks, including `useAxios` for data fetching and `useAuthStore` for authentication state management.
+- `styles/`: Global styles and Tailwind CSS configuration files.
+
+
+## Key Features
+
+- **Server-Side Rendering (SSR)**: Ensures fast load times and SEO optimization. Implemented in Next.js pages through `getServerSideProps`.
+
+  Example of SSR in `getServerSideProps`:
+
+  ```javascript
+  export async function getServerSideProps(context) {
+    // Fetch data for server-side rendering
+  }
+
+- **Caching**: I have also implemented caching of the home page using SSR and node-cache.
+
+- **Auth**: Succesfully implemented Auth protected routes which are only available to authenticated users.
+
+- **Zustand for State Management**: Zustand is used for a straightforward, hook-based state management solution. It provides an excellent developer experience and integrates seamlessly with Next.js, making state management across components a breeze.
+
+- **Tailwind CSS for Styling**: Tailwind CSS is integrated for rapid UI development. It enables custom, utility-first styling directly in your components, leading to faster development cycles and a more consistent design system.
+
+- **API Routes for Backend Integration**: Next.js API routes are used to create a seamless integration between the frontend and any backend logic, running server-side code directly within the Next.js app. This simplifies development by consolidating both frontend and backend logic in a single codebase..
