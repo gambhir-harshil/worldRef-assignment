@@ -12,6 +12,7 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { formSchema } from "@/lib/schema";
+import { useRouter } from "next/router";
 
 interface CustomFormProps {
   onSubmit: any;
@@ -22,6 +23,7 @@ const CustomForm = ({ onSubmit, name }: CustomFormProps) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   });
+  const router = useRouter();
   return (
     <>
       <h1 className="text-2xl font-semibold mb-8">{name}</h1>
@@ -66,7 +68,30 @@ const CustomForm = ({ onSubmit, name }: CustomFormProps) => {
               </FormItem>
             )}
           />
-          <Button>{name}</Button>
+          <div className="flex justify-between items-center">
+            <Button>{name}</Button>
+            {name === "Login" ? (
+              <p>
+                New here?{" "}
+                <span
+                  className="text-gray-400 cursor-pointer"
+                  onClick={() => router.push("/register")}
+                >
+                  Register
+                </span>
+              </p>
+            ) : (
+              <p>
+                Already a member?{" "}
+                <span
+                  className="text-gray-400 cursor-pointer"
+                  onClick={() => router.push("/login")}
+                >
+                  Login
+                </span>
+              </p>
+            )}
+          </div>
         </form>
       </Form>
     </>
