@@ -3,7 +3,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { MongoClient } from "mongodb";
 import { User } from "@/types/User";
 
-const uri = "mongodb+srv://harshil:harshil@cluster0.xqra17r.mongodb.net/";
+const uri = process.env.MONGODB_URI as string;
 const client = new MongoClient(uri);
 
 const dbName = "test";
